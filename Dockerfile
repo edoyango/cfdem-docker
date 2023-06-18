@@ -1,7 +1,10 @@
 FROM ubuntu:18.04
 
 # install cfdem dependencies
-RUN apt-get update && apt-get upgrade -y && apt-get install -y git build-essential flex bison cmake zlib1g-dev libboost-system-dev libboost-thread-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev libscotch-dev libptscotch-dev
+ARG LC_ALL=en_AU.UTF-8
+ARG LANGUAGE=en_AU.UTF-8
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get upgrade -y && apt-get install -y locales && locale-gen en_AU.UTF-8 && apt-get install -y git build-essential flex bison cmake zlib1g-dev libboost-system-dev libboost-thread-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev libscotch-dev libptscotch-dev libvtk6-dev python-numpy
 
 WORKDIR /usr/local
 RUN mkdir CFDEM LIGGGHTS OpenFOAM
@@ -27,5 +30,7 @@ RUN bash CFDEM-install.sh
 COPY entrypoint.sh /etc
 RUN chmod +x /etc/entrypoint.sh
 
+RUN useradd docker-user
+USER docker-user
 WORKDIR /
 ENTRYPOINT ["/etc/entrypoint.sh"]
