@@ -5,8 +5,7 @@ cfdembashrc=src/lagrangian/cfdemParticle/etc/bashrc
 liggghtsmakefile=/usr/local/LIGGGHTS/LIGGGHTS-PUBLIC/src/MAKE/Makefile.mpi
 sed -i 's@-6.2@-6.3@g' $liggghtsmakefile
 sed -i 's@#-L/usr/lib/x86_64-linux-gnu@-L/usr/lib/x86_64-linux-gnu@' $liggghtsmakefile
-sed -i 's@make new dirs $CFDEM_PROJECT_USER_DIR ? (y/n)@not making new dirs $CFDEM_PROJECT_USER_DIR@' $cfdembashrc
-sed -i 's@read YN@YN=n@' $cfdembashrc
+sed -i 's@read YN@YN=y@' $cfdembashrc
 . /usr/local/OpenFOAM/OpenFOAM-5.x/etc/bashrc
 . src/lagrangian/cfdemParticle/etc/bashrc
 export WM_NCOMPPROCS=`grep -c ^processor /proc/cpuinfo`

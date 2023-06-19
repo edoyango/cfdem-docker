@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 ARG LC_ALL=en_AU.UTF-8
 ARG LANGUAGE=en_AU.UTF-8
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get upgrade -y && apt-get install -y locales && locale-gen en_AU.UTF-8 && apt-get install -y git build-essential flex bison cmake zlib1g-dev libboost-system-dev libboost-thread-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev libscotch-dev libptscotch-dev libvtk6-dev python-numpy
+RUN apt-get update && apt-get upgrade -y && apt-get install -y locales && locale-gen en_AU.UTF-8 && apt-get install -y git build-essential flex bison cmake zlib1g-dev libboost-system-dev libboost-thread-dev libopenmpi-dev openmpi-bin gnuplot libreadline-dev libncurses-dev libxt-dev libscotch-dev libptscotch-dev libvtk6-dev python-numpy evince octave eog
 
 WORKDIR /usr/local
 RUN mkdir CFDEM LIGGGHTS OpenFOAM
@@ -23,7 +23,7 @@ RUN git clone https://github.com/CFDEMproject/LIGGGHTS-PUBLIC.git && git clone h
 
 ENV CFDEM_VERSION=PUBLIC
 ENV CFDEM_PROJECT_DIR=/usr/local/CFDEM/CFDEMcoupling-PUBLIC
-ENV CFDEM_PROJECT_USER_DIR=/home/CFDEM/cfdemlogs
+ENV CFDEM_PROJECT_USER_DIR=/home/docker-user/CFDEM/cfdemlogs
 ENV CFDEM_BASHRC=/usr/local/CFDEM/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/etc/bashrc
 ENV CFDEM_LIGGGHTS_SRC_DIR=/usr/local/LIGGGHTS/LIGGGHTS-PUBLIC/src
 ENV CFDEM_LIGGGHTS_MAKEFILE_NAME=mpi
@@ -38,7 +38,7 @@ RUN bash CFDEM-install.sh
 COPY entrypoint.sh /etc
 RUN chmod +x /etc/entrypoint.sh
 
-RUN useradd docker-user
+RUN useradd -d /home/docker-user docker-user
 RUN mkdir /work && chown docker-user:docker-user /work
 USER docker-user
 WORKDIR /work
