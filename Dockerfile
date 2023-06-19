@@ -32,6 +32,7 @@ WORKDIR /usr/local/CFDEM
 RUN git clone https://github.com/CFDEMproject/CFDEMcoupling-PUBLIC.git
 WORKDIR /usr/local/CFDEM/CFDEMcoupling-PUBLIC
 COPY CFDEM-install.sh .
+COPY cfdem-funcs/* /usr/local
 RUN bash CFDEM-install.sh
 
 COPY entrypoint.sh /etc

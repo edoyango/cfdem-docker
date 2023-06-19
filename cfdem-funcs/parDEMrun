@@ -1,0 +1,49 @@
+#!/bin/bash
+#--------------------------------------------------------------------------------#
+#- define variables
+logpath="$1"
+logfileName="$2"
+casePath="$3"
+headerText="$4"
+solverName="$5"
+nrProcs="$6"
+machineFileName="$7"
+debugMode="$8"
+#--------------------------------------------------------------------------------#
+
+if [[ $debugMode == "on" ]]; then
+    debugMode="valgrind"
+elif [[ $debugMode == "strict" ]]; then
+    #debugMode="valgrind --leak-check=full -v --trace-children=yes --track-origins=yes" 
+    debugMode="valgrind --tool=memcheck --track-origins=yes --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes"  
+elif [[ $debugMode == "strictXML" ]]; then
+    #debugMode="valgrind --leak-check=full -v --trace-children=yes --track-origins=yes" 
+    debugMode="valgrind --tool=memcheck --leak-check=yes --leak-check-heuristics=stdstring,length64,newarray,multipleinheritance --show-reachable=no --num-callers=20 --track-fds=yes --xml=yes --xml-file=valgrind.xml"  
+else
+    debugMode=""
+fi
+
+#- clean up old log file
+rm $logpath/$logfileName
+
+#- change path
+cd $casePath/DEM
+
+#- header
+echo 2>&1 | tee -a $logpath/$logfileName
+echo "//   $headerText   //" 2>&1 | tee -a $logpath/$logfileName
+echo 2>&1 | tee -a $logpath/$logfileName
+
+#- write path
+pwd 2>&1 | tee -a $logpath/$logfileName
+echo 2>&1 | tee -a $logpath/$logfileName
+
+#- run applictaion
+if [[ $machineFileName == "none" ]]; then
+    mpirun -np $nrProcs $debugMode $CFDEM_LIGGGHTS_EXEC -in $solverName 2>&1 | tee -a $logpath/$logfileName
+else
+    mpirun -machinefile $machineFileName -np $nrProcs $debugMode $CFDEM_LIGGGHTS_EXEC -in $solverName 2>&1 | tee -a $logpath/$logfileName
+fi
+
+#- keep terminal open (if started in new terminal)
+#read

@@ -1,0 +1,40 @@
+#!/bin/bash
+#--------------------------------------------------------------------------------#
+#- define variables
+logpath="$1"
+logfileName="$2"
+casePath="$3"
+headerText="$4"
+solverName="$5"
+debugMode="$6"
+#--------------------------------------------------------------------------------#
+
+if [[ $debugMode == "on" ]]; then
+    debugMode="valgrind"
+else
+    debugMode=""
+fi
+
+#- clean up old log file
+rm $logpath/$logfileName
+
+#- change path
+cd $casePath/CFD
+
+#- header
+echo 2>&1 | tee -a /$logpath/$logfileName
+echo "//   $headerText   //" 2>&1 | tee -a $logpath/$logfileName
+echo 2>&1 | tee -a $logpath/$logfileName
+
+#- write path
+pwd 2>&1 | tee -a $logpath/$logfileName
+echo 2>&1 | tee -a $logpath/$logfileName
+
+#- clean up case
+#rm couplingFiles/*
+
+#- run applictaion
+$debugMode $solverName 2>&1 | tee -a $logpath/$logfileName
+
+#- keep terminal open (if started in new terminal)
+#read
