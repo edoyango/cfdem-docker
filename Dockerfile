@@ -32,7 +32,7 @@ WORKDIR /usr/local/CFDEM
 RUN git clone https://github.com/CFDEMproject/CFDEMcoupling-PUBLIC.git
 WORKDIR /usr/local/CFDEM/CFDEMcoupling-PUBLIC
 COPY CFDEM-install.sh .
-COPY cfdem-funcs/* /usr/local
+COPY cfdem-funcs/* /usr/local/bin
 RUN bash CFDEM-install.sh
 
 COPY entrypoint.sh /etc
@@ -42,4 +42,4 @@ RUN useradd docker-user
 RUN mkdir /work && chown docker-user:docker-user /work
 USER docker-user
 WORKDIR /work
-ENTRYPOINT /bin/bash /etc/entrypoint.sh
+ENTRYPOINT ["/etc/entrypoint.sh"]
