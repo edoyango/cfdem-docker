@@ -31,6 +31,7 @@ COPY entrypoint.sh /etc
 RUN chmod +x /etc/entrypoint.sh
 
 RUN useradd docker-user
+RUN mkdir /work && chown docker-user:docker-user /work
 USER docker-user
-WORKDIR /
+WORKDIR /work
 ENTRYPOINT ["/etc/entrypoint.sh"]
