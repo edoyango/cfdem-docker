@@ -39,11 +39,11 @@ COPY CFDEM-install.sh .
 COPY cfdem-funcs/* /usr/local/bin
 RUN bash CFDEM-install.sh
 
-COPY entrypoint.sh /etc
-RUN chmod +x /etc/entrypoint.sh
+COPY entrypoint.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN useradd -d /home/docker-user docker-user
 RUN mkdir /work && chown docker-user:docker-user /work
 USER docker-user
 WORKDIR /work
-ENTRYPOINT ["/etc/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
