@@ -15,7 +15,6 @@ ENV WM_PROJECT_INST_DIR="/usr/local" \
     WM_LDFLAGS=-m64 WM_CXXFLAGS="-m64 -fPIC -std=c++0x" \
     WM_PRECISION_OPTION="DP" \
     WM_CC="gcc" \
-    WM_PROJECT_USER_DIR="/home/dock-user/OpenFOAM-5.x" \
     WM_OPTIONS="linux64GccDPInt32Opt" \
     WM_LINK_LANGUAGE="c++" \
     WM_OSTYPE="POSIX" \
@@ -43,30 +42,24 @@ ENV WM_PROJECT_INST_DIR="/usr/local" \
     ParaView_DIR="/usr/local/ThirdParty-5.x/platforms/linux64Gcc/ParaView-5.4.0" \
     FOAM_SOLVERS="/usr/local/OpenFOAM-5.x/applications/solvers" \
     FOAM_EXT_LIBBIN="/usr/local/ThirdParty-5.x/platforms/linux64GccDPInt32/lib" \
-    FOAM_USER_APPBIN="/home/dock-user/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/bin" \
     FOAM_SIGFPE= \
     FOAM_LIBBIN="/usr/local/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/lib" \
     FOAM_SRC="/usr/local/OpenFOAM-5.x/src" \
     FOAM_ETC="/usr/local/OpenFOAM-5.x/etc" \
     FOAM_SETTINGS= \
-    FOAM_SITE_APPBIN="/usr/local/OpenFOAM/site/5.x/platforms/linux64GccDPInt32Opt/bin" \
-    FOAM_SITE_LIBBIN="/usr/local/OpenFOAM/site/5.x/platforms/linux64GccDPInt32Opt/lib" \
     FOAM_INST_DIR="/usr/local" \
-    FOAM_USER_LIBBIN="/home/dock-user/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/lib" \
     FOAM_MPI="openmpi-system" \
     FOAM_JOB_DIR="/usr/local/OpenFOAM/jobControl"
-ENV PATH="${WM_THIRD_PARTY_DIR}/platforms/linux64Gcc/gperftools-svn/bin:${FOAM_SITE_APPBIN}:${FOAM_APPBIN}:${WM_PROJECT_DIR}/bin:${WM_DIR}:${PATH}" \
-    LD_LIBRARY_PATH="${WM_THIRD_PARTY_DIR}/platforms/linux64Gcc/gperftools-svn/lib:${FOAM_LIBBIN}/openmpi-system:${WM_THIRD_PARTY_DIR}/platforms/linux64GccDPInt32/lib/openmpi-system:${FOAM_SITE_LIBBIN}:${FOAM_LIBBIN}:${FOAM_EXT_LIBBIN}:${FOAM_LIBBIN}/dummy:${LD_LIBRARY_PATH}"
+ENV PATH="${WM_THIRD_PARTY_DIR}/platforms/linux64Gcc/gperftools-svn/bin:${FOAM_APPBIN}:${WM_PROJECT_DIR}/bin:${WM_DIR}:${PATH}" \
+    LD_LIBRARY_PATH="${WM_THIRD_PARTY_DIR}/platforms/linux64Gcc/gperftools-svn/lib:${FOAM_LIBBIN}/openmpi-system:${FOAM_EXT_LIBBIN}/openmpi-system:${FOAM_LIBBIN}:${FOAM_EXT_LIBBIN}:${FOAM_LIBBIN}/dummy:${LD_LIBRARY_PATH}"
 
 # CFDEM vars and libs
 ENV CFDEM_VERSION="PUBLIC" \
     CFDEM_PROJECT_DIR="/usr/local/CFDEMcoupling-PUBLIC" \
-    CFDEM_PROJECT_USER_DIR="/home/docker-user/CFDEM/cfdemlogs" \
     CFDEM_BASHRC="/usr/local/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/etc/bashrc" \
     CFDEM_LIGGGHTS_SRC_DIR="/usr/local/LIGGGHTS-PUBLIC/src" \
     CFDEM_LIGGGHTS_MAKEFILE_NAME="auto" \
     CFDEM_LPP_DIR="/usr/local/lpp/src" \
-    CFDEM_USER_APP_DIR="/home/docker-user/CFDEMcoupling-PUBLIC/platforms/linux64GccDPInt32Opt/bin" \
     CFDEM_TUT_DIR="/usr/local/CFDEMcoupling-PUBLIC/tutorials" \
     CFDEM_POEMSLIB_PATH="/usr/local/LIGGGHTS-PUBLIC/lib/poems" \
     CFDEM_M2MMSLIB_PATH="/usr/local/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/subModels/dataExchangeModel/M2M/library" \
@@ -84,7 +77,6 @@ ENV CFDEM_VERSION="PUBLIC" \
     CFDEM_LIGGGHTS_LIB_PATH="/usr/local/LIGGGHTS-PUBLIC/src" \
     CFDEM_OFVERSION_DIR="/usr/local/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/etc/OFversion" \
     CFDEM_M2MLIB_PATH="/usr/local/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/subModels/dataExchangeModel/M2M/library" \
-    CFDEM_USER_LIB_DIR="/usr/local/cfdemlogs-PUBLIC/platforms/linux64GccDPInt32Opt/lib" \
     CFDEM_M2MMSLIB_MAKEFILENAME="auto" \
     CFDEM_SOLVER_DIR="/usr/local/CFDEMcoupling-PUBLIC/applications/solvers" \
     CFDEM_LAMMPS_LIB_DIR="/usr/local/LIGGGHTS-PUBLIC/lib" \
@@ -142,7 +134,6 @@ ENV WM_PROJECT_INST_DIR="/usr/local" \
     WM_LDFLAGS=-m64 WM_CXXFLAGS="-m64 -fPIC -std=c++0x" \
     WM_PRECISION_OPTION="DP" \
     WM_CC="gcc" \
-    WM_PROJECT_USER_DIR="/home/dock-user/OpenFOAM-5.x" \
     WM_OPTIONS="linux64GccDPInt32Opt" \
     WM_LINK_LANGUAGE="c++" \
     WM_OSTYPE="POSIX" \
@@ -170,30 +161,24 @@ ENV WM_PROJECT_INST_DIR="/usr/local" \
     ParaView_DIR="/usr/local/ThirdParty-5.x/platforms/linux64Gcc/ParaView-5.4.0" \
     FOAM_SOLVERS="/usr/local/OpenFOAM-5.x/applications/solvers" \
     FOAM_EXT_LIBBIN="/usr/local/ThirdParty-5.x/platforms/linux64GccDPInt32/lib" \
-    FOAM_USER_APPBIN="/home/dock-user/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/bin" \
     FOAM_SIGFPE= \
     FOAM_LIBBIN="/usr/local/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/lib" \
     FOAM_SRC="/usr/local/OpenFOAM-5.x/src" \
     FOAM_ETC="/usr/local/OpenFOAM-5.x/etc" \
     FOAM_SETTINGS= \
-    FOAM_SITE_APPBIN="/usr/local/OpenFOAM/site/5.x/platforms/linux64GccDPInt32Opt/bin" \
-    FOAM_SITE_LIBBIN="/usr/local/OpenFOAM/site/5.x/platforms/linux64GccDPInt32Opt/lib" \
     FOAM_INST_DIR="/usr/local" \
-    FOAM_USER_LIBBIN="/home/docker-user/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/lib" \
     FOAM_MPI="openmpi-system" \
     FOAM_JOB_DIR="/usr/local/OpenFOAM/jobControl"
-ENV PATH="${WM_THIRD_PARTY_DIR}/platforms/linux64Gcc/gperftools-svn/bin:${FOAM_SITE_APPBIN}:${FOAM_APPBIN}:${WM_PROJECT_DIR}/bin:${WM_DIR}:${PATH}" \
-    LD_LIBRARY_PATH="${WM_THIRD_PARTY_DIR}/platforms/linux64Gcc/gperftools-svn/lib:${FOAM_LIBBIN}/openmpi-system:${WM_THIRD_PARTY_DIR}/platforms/linux64GccDPInt32/lib/openmpi-system:${FOAM_SITE_LIBBIN}:${FOAM_LIBBIN}:${FOAM_EXT_LIBBIN}:${FOAM_LIBBIN}/dummy:${LD_LIBRARY_PATH}"
+ENV PATH="${WM_THIRD_PARTY_DIR}/platforms/linux64Gcc/gperftools-svn/bin:${FOAM_APPBIN}:${WM_PROJECT_DIR}/bin:${WM_DIR}:${PATH}" \
+    LD_LIBRARY_PATH="${WM_THIRD_PARTY_DIR}/platforms/linux64Gcc/gperftools-svn/lib:${FOAM_LIBBIN}/openmpi-system:${FOAM_EXT_LIBBIN}/openmpi-system:${FOAM_LIBBIN}:${FOAM_EXT_LIBBIN}:${FOAM_LIBBIN}/dummy:${LD_LIBRARY_PATH}"
 
 # CFDEM vars and libs
 ENV CFDEM_VERSION="PUBLIC" \
     CFDEM_PROJECT_DIR="/usr/local/CFDEMcoupling-PUBLIC" \
-    CFDEM_PROJECT_USER_DIR="/home/docker-user/CFDEM/cfdemlogs" \
     CFDEM_BASHRC="/usr/local/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/etc/bashrc" \
     CFDEM_LIGGGHTS_SRC_DIR="/usr/local/LIGGGHTS-PUBLIC/src" \
     CFDEM_LIGGGHTS_MAKEFILE_NAME="auto" \
     CFDEM_LPP_DIR="/usr/local/lpp/src" \
-    CFDEM_USER_APP_DIR="/home/docker-user/CFDEMcoupling-PUBLIC/platforms/linux64GccDPInt32Opt/bin" \
     CFDEM_TUT_DIR="/usr/local/CFDEMcoupling-PUBLIC/tutorials" \
     CFDEM_POEMSLIB_PATH="/usr/local/LIGGGHTS-PUBLIC/lib/poems" \
     CFDEM_M2MMSLIB_PATH="/usr/local/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/subModels/dataExchangeModel/M2M/library" \
@@ -211,7 +196,6 @@ ENV CFDEM_VERSION="PUBLIC" \
     CFDEM_LIGGGHTS_LIB_PATH="/usr/local/LIGGGHTS-PUBLIC/src" \
     CFDEM_OFVERSION_DIR="/usr/local/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/etc/OFversion" \
     CFDEM_M2MLIB_PATH="/usr/local/CFDEMcoupling-PUBLIC/src/lagrangian/cfdemParticle/subModels/dataExchangeModel/M2M/library" \
-    CFDEM_USER_LIB_DIR="/usr/local/cfdemlogs-PUBLIC/platforms/linux64GccDPInt32Opt/lib" \
     CFDEM_M2MMSLIB_MAKEFILENAME="auto" \
     CFDEM_SOLVER_DIR="/usr/local/CFDEMcoupling-PUBLIC/applications/solvers" \
     CFDEM_LAMMPS_LIB_DIR="/usr/local/LIGGGHTS-PUBLIC/lib" \
@@ -233,6 +217,7 @@ COPY --from=builder ${WM_PROJECT_DIR}/bin ${WM_PROJECT_DIR}/bin
 COPY --from=builder ${FOAM_APPBIN} ${FOAM_APPBIN}
 # OpenFOAM libraries (needed by binaries)
 COPY --from=builder ${FOAM_LIBBIN} ${FOAM_LIBBIN}
+COPY --from=builder ${FOAM_ETC} ${FOAM_ETC}
 
 # OpenFOAM ThirdParty binaries
 COPY --from=builder ${WM_THIRD_PARTY_DIR}/platforms ${WM_THIRD_PARTY_DIR}/platforms
@@ -258,8 +243,5 @@ COPY --from=builder /usr/local/share /usr/local/share
 COPY --from=builder /usr/local/etc /usr/local/etc
 COPY --from=builder /usr/local/man /usr/local/man
 
-
-RUN useradd -d /home/docker-user docker-user && mkdir /work && chown docker-user:docker-user /work
-USER docker-user
 WORKDIR /work
 CMD ["/bin/bash"]

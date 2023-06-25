@@ -38,6 +38,7 @@ cd CFDEMcoupling-PUBLIC/tutorials/cfdemSolverIB/twoSpheresGlowinskiMPI
 docker run \
     -v $(pwd):/work \              # mounts the current working directory as /work in the container
     -v $(HOME):/home/docker-user \ # mounts your home directory as /home/docker-user in the container
+    -v /etc/passwd:/etc/passwd -u `id -u`:`id -g` # run container as you
     fishchicken/cfdem:3.8.1 \      # the container
     bash /work/Allrun.sh           # the run command. This should execute the entire example pipeline.
 ```
