@@ -39,13 +39,13 @@ ENV WM_PROJECT_INST_DIR="/usr/local" \
     FOAM_RUN="/home/dock-user/OpenFOAM-5.x/run" \
     FOAM_APP="/usr/local/OpenFOAM-5.x/applications" \
     FOAM_UTILITIES="/usr/local/OpenFOAM-5.x/applications/utilities" \
-    FOAM_APPBIN="/usr/local/bin" \
+    FOAM_APPBIN="/usr/local/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/bin" \
     ParaView_DIR="/usr/local/ThirdParty-5.x/platforms/linux64Gcc/ParaView-5.4.0" \
     FOAM_SOLVERS="/usr/local/OpenFOAM-5.x/applications/solvers" \
-    FOAM_EXT_LIBBIN="/usr/local/lib" \
+    FOAM_EXT_LIBBIN="/usr/local/ThirdParty-5.x/platforms/linux64GccDPInt32/lib" \
     FOAM_USER_APPBIN="/home/dock-user/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/bin" \
     FOAM_SIGFPE= \
-    FOAM_LIBBIN="/usr/local/lib" \
+    FOAM_LIBBIN="/usr/local/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/lib" \
     FOAM_SRC="/usr/local/OpenFOAM-5.x/src" \
     FOAM_ETC="/usr/local/OpenFOAM-5.x/etc" \
     FOAM_SETTINGS= \
@@ -166,13 +166,13 @@ ENV WM_PROJECT_INST_DIR="/usr/local" \
     FOAM_RUN="/home/dock-user/OpenFOAM-5.x/run" \
     FOAM_APP="/usr/local/OpenFOAM-5.x/applications" \
     FOAM_UTILITIES="/usr/local/OpenFOAM-5.x/applications/utilities" \
-    FOAM_APPBIN="/usr/local/bin" \
+    FOAM_APPBIN="/usr/local/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/bin" \
     ParaView_DIR="/usr/local/ThirdParty-5.x/platforms/linux64Gcc/ParaView-5.4.0" \
     FOAM_SOLVERS="/usr/local/OpenFOAM-5.x/applications/solvers" \
-    FOAM_EXT_LIBBIN="/usr/local/lib" \
+    FOAM_EXT_LIBBIN="/usr/local/ThirdParty-5.x/platforms/linux64GccDPInt32/lib" \
     FOAM_USER_APPBIN="/home/dock-user/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/bin" \
     FOAM_SIGFPE= \
-    FOAM_LIBBIN="/usr/local/lib" \
+    FOAM_LIBBIN="/usr/local/OpenFOAM-5.x/platforms/linux64GccDPInt32Opt/lib" \
     FOAM_SRC="/usr/local/OpenFOAM-5.x/src" \
     FOAM_ETC="/usr/local/OpenFOAM-5.x/etc" \
     FOAM_SETTINGS= \
@@ -229,9 +229,10 @@ ENV PATH="${CFDEM_APP_DIR}:${PATH}" \
     LD_LIBRARY_PATH="/usr/local/LIGGGHTS-PUBLIC/lib/vtk/install/lib:${CFDEM_LIB_DIR}:${LD_LIBRARY_PATH}"
 
 # OpenFOAM binaries
-COPY --from=builder ${WM_PROJECT_DIR}/bin /usr/local/bin
+COPY --from=builder ${WM_PROJECT_DIR}/bin ${WM_PROJECT_DIR}/bin
+COPY --from=builder ${FOAM_APPBIN} ${FOAM_APPBIN}
 # OpenFOAM libraries (needed by binaries)
-COPY --from=builder ${FOAM_ETC} ${FOAM_ETC}
+COPY --from=builder ${FOAM_LIBBIN} ${FOAM_LIBBIN}
 
 # OpenFOAM ThirdParty binaries
 COPY --from=builder ${WM_THIRD_PARTY_DIR}/platforms ${WM_THIRD_PARTY_DIR}/platforms
@@ -243,7 +244,7 @@ COPY --from=builder ${CFDEM_LIGGGHTS_SRC_DIR}/liblmp_auto.so ${CFDEM_LIGGGHTS_SR
 RUN ln -s ${CFDEM_LIGGGHTS_SRC_DIR}/liblmp_auto.so  ${CFDEM_LIGGGHTS_SRC_DIR}/libliggghts.so
 
 # VTK install (built with liggghts)
-COPY --from=builder ${CFDEM_LAMMPS_LIB_DIR}/vtk/install/lib ${CFDEM_LAMMPS_LIB_DIR}/vtk/install/lib
+COPY --from=builder ${CFDEM_LAMMPS_LIB_DIR}/vtk/install ${CFDEM_LAMMPS_LIB_DIR}/vtk/install
 
 # LIGGGHTS post processing
 COPY --from=builder /usr/local/lpp /usr/local/lpp
