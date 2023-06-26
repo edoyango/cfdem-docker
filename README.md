@@ -21,6 +21,8 @@ apptainer pull fishchicken/cfdem:3.8.1
 
 ## Usage
 
+Currently, `mpiexec` commands should be initiated from inside the container. For Apptainer, `mpiexec` outside the container (e.g., for multi-node runs) should be possible (see [apptainer docs](https://apptainer.org/docs/user/latest/mpi.html)), but hasn't been tested. It may require a rebuild of the container so that the MPI version used on the system matches the MPI version used inside the container.
+
 ### Running the CFDEM tutorials
 
 #### Setup
@@ -52,6 +54,19 @@ apptainer run \
     bash /work/Allrun.sh               # the run command. This should execute the entire example pipeline
 ```
 
+### Multi-node usage
+
+Can only be done with Apptainer. Docker can technically be done, but is more challenging to setup and not suitable for HPC.
+
+Has not been fully tested. To use Open MPI with the container, you must rebuild the container to use the same Open MPI version as the system you are targetting. 
+
+Note: cannot be used with Slurm that wasn't built with PMIx support.
+
+To use the container with MPI outside of the container:
+
+```bash
+mpiexec apptainer <container> <solver> -parallel
+```
 ## Deviations from CFDEM install instructions
 
 The instructions that the container was originally built with is from here:
