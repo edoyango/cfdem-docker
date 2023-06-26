@@ -37,9 +37,9 @@ cd CFDEMcoupling-PUBLIC/tutorials/cfdemSolverIB/twoSpheresGlowinskiMPI
 ```bash
 docker run \
     -v $(pwd):/work \              # mounts the current working directory as /work in the container
-    -v $(HOME):/home/docker-user \ # mounts your home directory as /home/docker-user in the container
-    -v /etc/passwd:/etc/passwd -u `id -u`:`id -g` # run container as you
-    fishchicken/cfdem:3.8.1 \      # the container
+    -v /etc/passwd:/etc/passwd  \
+    -u `id -u`:`id -g` \           # run container as you
+    edoyango/cfdem:3.8.1 \         # the container
     bash /work/Allrun.sh           # the run command. This should execute the entire example pipeline.
 ```
 
@@ -48,9 +48,8 @@ docker run \
 ```bash
 apptainer run \
     -B $(pwd):/work \                  # mounts the current working ddirectory as /work in the container
-    -B ${HOME}:/home/docker-user \     # mounts your home directory as /home/docker-user in the container
-    docker://fishchicken/cfdem:3.8.1 \ # the container
-    bash /work/Allrun.sh               # the command to be run inside the container. This should execute the entire example pipeline
+    docker://edoyango/cfdem:3.8.1 \    # the container
+    bash /work/Allrun.sh               # the run command. This should execute the entire example pipeline
 ```
 
 ## Deviations from CFDEM install instructions
@@ -59,7 +58,7 @@ The instructions that the container was originally built with is from here:
 
 `https://www.cfdem.com/media/CFDEM/docu/CFDEMcoupling_Manual.html#installation`
 
-These instructions are quite basic and seem to be written to optimise for convenience
+These instructions are quite basic and seem to be written to optimise for convenience. These instructions were deviated form so as to reduce the container size and include only necessary files.
 
 ### Built OpenMPI from source
 
@@ -73,7 +72,7 @@ only installs the necessary features, which adds about 50MB only to the containe
 ### Not keeping source code and built object files
 
 Source code and object files aren't necessary to run CFDEM and its subprograms. These are ommitted from the final image by using staged builds of the Docker image.
-Only executables and shared libraries are kept.
+Only executables, shared libraries, and necessary etc files are kept.
 
 ### Excluding visualisation software
 
