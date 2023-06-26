@@ -54,19 +54,6 @@ apptainer run \
     bash /work/Allrun.sh               # the run command. This should execute the entire example pipeline
 ```
 
-### Multi-node usage
-
-Can only be done with Apptainer. Docker can technically be done, but is more challenging to setup and not suitable for HPC.
-
-Has not been fully tested. To use Open MPI with the container, you must rebuild the container to use the same Open MPI version as the system you are targetting. 
-
-Note: cannot be used with Slurm that wasn't built with PMIx support.
-
-To use the container with MPI outside of the container:
-
-```bash
-mpiexec apptainer <container> <solver> -parallel
-```
 ## Deviations from CFDEM install instructions
 
 The instructions that the container was originally built with is from here:
