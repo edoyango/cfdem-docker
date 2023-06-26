@@ -95,7 +95,7 @@ ENV PATH="${CFDEM_APP_DIR}:${PATH}" \
 
 # building MPI
 WORKDIR /usr/local
-RUN wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.6.tar.bz2 && tar xjf openmpi-3.1.6.tar.bz2 && rm openmpi-3.1.6.tar.bz2 && cd openmpi-3.1.6 && ./configure --enable-mpi-thread-multiple --enable-static --enable-mpi-cxx --enable-mpi-fortran=no --disable-oshmem && make -j && make install && cd .. && rm -rf openmpi-3.1.6
+RUN wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.6.tar.bz2 && tar xjf openmpi-3.1.6.tar.bz2 && rm openmpi-3.1.6.tar.bz2 && cd openmpi-3.1.6 && ./configure --enable-static --enable-mpi-thread-multiple --enable-mpi-cxx --enable-mpi-fortran=no --disable-oshmem --with-pmix && make -j && make install && cd .. && rm -rf openmpi-3.1.6
 
 RUN git clone https://github.com/OpenFOAM/OpenFOAM-5.x.git && git clone https://github.com/OpenFOAM/ThirdParty-5.x.git
 
