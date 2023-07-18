@@ -1,0 +1,13 @@
+FROM ubuntu:22.04
+
+ENV LC_ALL=en_AU.UTF-8
+ENV LANGUAGE=en_AU.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get upgrade -y && apt-get install -y curl libx11-dev libgomp1 locales libxcursor1 libx11-xcb1 libxkbcommon-x11-0 fontconfig libxcb-icccm4 libxcb-image0 libxcb-shm0 libxcb-util1 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-render0 libxcb-shape0 libxcb-sync1 libxcb-xfixes0 libxcb-xinerama0 libxcb-xkb1 libxcb-xinput0 libxcb1 libxcb-glx0 libgl1 && locale-gen en_AU.UTF-8
+RUN curl --output virtualgl_2.6.4_amd64.deb https://swift.rc.nectar.org.au/v1/AUTH_810/CVL-Singularity-External-Files/virtualgl_2.6.4_amd64.deb && curl --output turbovnc_2.2.5_amd64.deb https://swift.rc.nectar.org.au/v1/AUTH_810/CVL-Singularity-External-Files/turbovnc_2.2.5_amd64.deb && apt-get install -y ./virtualgl_2.6.4_amd64.deb ./turbovnc_2.2.5_amd64.deb && rm ./virtualgl_2.6.4_amd64.deb turbovnc_2.2.5_amd64.deb
+WORKDIR /opt
+RUN curl 'https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.11&type=binary&os=Linux&downloadFile=ParaView-5.11.1-MPI-Linux-Python3.9-x86_64.tar.gz' | tar xzv && mv ParaView-5.11.1-MPI-Linux-Python3.9-x86_64 paraview-5.11.1
+
+ENV PATH=/opt/paraview-5.11.1/bin:"${PATH}"
+ENV LD_LIBRARY_PATH=/opt/paraview-5.11.1/lib:"{$LD_LIBRARY_PATH}"
+CMD paraview
