@@ -7,7 +7,7 @@ Add a GitHub issue if you have issues or want to suggest some improvements.
 ### Docker
 
 ```bash
-docker pull fishchicken/cfdem:3.8.1
+docker pull edoyango/cfdem:3.8.1
 ```
 
 ### Apptainer/Singularity
@@ -16,7 +16,7 @@ NOTE: The conversion from docker to apptainer/singularity only works for newer v
 This is due to issues where the container is pulled without its environment.
 
 ```bash
-apptainer pull fishchicken/cfdem:3.8.1
+apptainer pull edoyango/cfdem:3.8.1
 ```
 
 ## Usage
@@ -60,7 +60,7 @@ The instructions that the container was originally built with is from here:
 
 `https://www.cfdem.com/media/CFDEM/docu/CFDEMcoupling_Manual.html#installation`
 
-These instructions are quite basic and seem to be written to optimise for convenience. These instructions were deviated form so as to reduce the container size and include only necessary files.
+These instructions are quite basic and seem to be written to optimise for convenience. These instructions were deviated from so as to reduce the container size and include only necessary files.
 
 ### Built OpenMPI from source
 
@@ -79,3 +79,5 @@ Only executables, shared libraries, and necessary etc files are kept.
 ### Excluding visualisation software
 
 `eog`, `evince`, and `octave` APT packages are all needed to visualise the tutorials' results. These packages are ommitted from the container to reduce size.
+
+Paraview isn't included either.
